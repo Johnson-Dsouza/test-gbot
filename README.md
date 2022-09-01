@@ -1,4 +1,3 @@
 # g-bot
 
-
-A standup bot 
+A standup bot
