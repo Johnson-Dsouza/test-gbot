@@ -1,5 +1,19 @@
 {
-    "compilerOptions": {
-        "types": ["node"]
-    }
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitReturns": true,
+    "strict": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "target": "es2020",
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true
+  },
+  "compileOnSave": true,
+  "include": ["src/**/*"]
 }
+
