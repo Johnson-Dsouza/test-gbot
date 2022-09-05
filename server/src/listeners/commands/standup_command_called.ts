@@ -48,10 +48,9 @@ const standupCommandCalled = async ({
         },
       ],
       // Text in the notification
-      text: "Message from Whatsup App",
+      text: "Message from G-Bot",
     });
   } catch (error) {
-    console.log(error);
     await client.chat.postMessage({
       token: context.botToken,
       channel: payload.channel_id,
@@ -59,7 +58,6 @@ const standupCommandCalled = async ({
     });
     console.error(error);
   }
-  console.log("run /standup command")
 };
 
-module.exports =  standupCommandCalled ;
+module.exports = standupCommandCalled;
