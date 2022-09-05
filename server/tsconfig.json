@@ -4,9 +4,10 @@
     "module": "commonjs",
     "noImplicitReturns": true,
     "strict": true,
-    "outDir": "dist",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "sourceMap": true,
-    "target": "es2020",
+    "target": "es6",
     "baseUrl": "src",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -15,6 +16,6 @@
     "allowJs": true
   },
   "compileOnSave": true,
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "index.ts", "listeners"]
 }
 

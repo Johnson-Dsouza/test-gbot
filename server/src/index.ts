@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const { handleListeners } = require("./listeners");
+
 const { App } = require("@slack/bolt");
 
 //initializing the app
@@ -10,4 +12,6 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
 });
 
+handleListeners(app);
 
+app.start(3000);
