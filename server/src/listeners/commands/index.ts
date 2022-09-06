@@ -1,10 +1,9 @@
-const  standupCommand  = require("./standup_command_called");
+const standupCommand = require("./standup");
 
 type Command = {
- command : Function 
-}
+  command: Function;
+};
 
-module.exports.handle = (app:Command) => {
-
+module.exports.handle = (app: Command) => {
   app.command("/standup", standupCommand);
 };
