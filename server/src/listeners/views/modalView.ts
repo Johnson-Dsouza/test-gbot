@@ -1,8 +1,13 @@
 type StandupModalArguments = {
-  client: { chat: { postMessage: Function } };
+  client: {
+    chat: { postMessage: Function };
+    users: { profile: { get: Function } };
+    token: string;
+  };
   context: { botToken: string };
   ack: Function;
   payload: { channel_id: string; state: { values: any | object } };
+  body: { user: { id: string } };
 };
 
 const standupModal = async ({
@@ -10,15 +15,34 @@ const standupModal = async ({
   client,
   payload,
   context,
+  body,
 }: StandupModalArguments) => {
   await ack();
 
+  /**
+   * Making a request to receive user details
+   * using it to populate response as user
+   * in the selected channel
+   */
+
+  const user = await client.users.profile
+    .get({ token: client.token, user: body.user.id })
+    .then((data: any) => data)
+    .then(
+      (data: { profile: { image_192: string; diplay_name: string } }) =>
+        data.profile
+    );
+
   try {
     await client.chat.postMessage({
+      //posting message as a user
+      icon_url: user.image_192,
+      username: user.display_name,
+
       token: context.botToken,
 
       // Channel to send message to
-      channel: "C03TSR2EE4Q",
+      channel: "C0403497QV8",
 
       blocks: [
         {
@@ -26,13 +50,13 @@ const standupModal = async ({
 
           text: {
             type: "mrkdwn",
-            text: "*Standup from Whatsup Bot*",
+            text: "*Standup from G-bot*",
           },
         },
       ],
 
       // Text in the notification
-      text: "Today's standup from Whatsup App",
+      text: "Today's standup G-bot App",
       attachments: [
         {
           mrkdwn_in: ["text"],
@@ -52,7 +76,8 @@ const standupModal = async ({
 
           fields: [
             {
-              title: "What did you do yesterday?",
+              title:
+                "What is/are the things that you've done which mattered to the sprint goal since yesterday?",
               value: `${payload.state.values.question_two.question_two.value}`,
               short: false,
             },
@@ -64,7 +89,8 @@ const standupModal = async ({
 
           fields: [
             {
-              title: "What will you do today?",
+              title:
+                "What is the next important thing that you will do to achieve the sprint goal?",
               value: `${payload.state.values.question_three.question_three.value}`,
               short: false,
             },
@@ -76,7 +102,7 @@ const standupModal = async ({
 
           fields: [
             {
-              title: "Is there anything blocking your progress?",
+              title: "Any Blockers that need to be addressed by the team?",
               value: `${payload.state.values.question_four.question_four.value}`,
               short: false,
             },
@@ -84,12 +110,11 @@ const standupModal = async ({
         },
       ],
     });
-    console.log("modal submitted")
   } catch (error) {
-    await app.client.chat.postMessage({
+    await client.chat.postMessage({
       token: context.botToken,
       // Channel to send message to
-      channel: "C03TSR2EE4Q",
+      channel: "C0403497QV8",
       // Include a button in the message (or whatever blocks you want!)
       blocks: [
         {

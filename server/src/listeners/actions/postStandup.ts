@@ -43,10 +43,10 @@ const postStandupButton = async ({
     token: body.botToken,
     view: {
       type: "modal",
-      callback_id: "modal-with-inputs",
+      callback_id: "modal-with-standup-questions",
       title: {
         type: "plain_text",
-        text: "Whatsup",
+        text: "G-bot",
       },
       submit: {
         type: "plain_text",

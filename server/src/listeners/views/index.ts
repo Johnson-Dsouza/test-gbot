@@ -1,4 +1,4 @@
-const modal = require("./standup_modal");
+const modal = require("./modalView");
 
 type View = {
   view: Function;
