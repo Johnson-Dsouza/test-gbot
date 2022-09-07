@@ -26,7 +26,7 @@ const standup = async ({
               type: "button",
               text: {
                 type: "plain_text",
-                text: "Approve",
+                text: "Post Standup",
                 emoji: true,
               },
               style: "primary",
