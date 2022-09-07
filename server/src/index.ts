@@ -1,24 +1,23 @@
 require("dotenv").config();
 
 const { handleListeners } = require("./listeners");
+const { App, ExpressReceiver } = require("@slack/bolt");
 
-const { App } = require("@slack/bolt");
 const express = require("express");
+const expressApp = express();
 
-const app = express();
-
-//initializing the app
-const boltApp = new App({
-  token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGINING_SECRET,
-  socketMode: true,
-  appToken: process.env.SLACK_APP_TOKEN,
+const receiver = new ExpressReceiver({
+  app: expressApp,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
 });
 
-handleListeners(boltApp);
+const slackApp = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+  receiver,
+});
 
-boltApp.start(8080);
+handleListeners(slackApp);
 
-app.listen(8000, () => {
-  console.log("Server is running");
+expressApp.listen(process.env.PORT || 8000, () => {
+  console.log("⚡️ Bolt app is running! ⚡️");
 });

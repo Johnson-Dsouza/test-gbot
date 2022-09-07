@@ -1,5 +1,5 @@
 const commandListener = require("./commands");
 
-module.exports.handleListeners = (app:{}) => {
+module.exports.handleListeners = (app:any) => {
   commandListener.handle(app);
 };
