@@ -1,4 +1,6 @@
-type PostStandupdArguments = {
+const standupQuestions = require("../../utils/standupQuestions");
+
+type PostStandupArguments = {
   client: { views: { open: Function } };
   body: { botToken: string; trigger_id: string };
   ack: Function;
@@ -29,20 +31,15 @@ type StandupQuestionModal = {
   };
 };
 
-const approveButtonClicked = async ({
+type StandupQuestion = { question: string; id: string };
+
+const postStandupButton = async ({
   client,
   body,
   ack,
-}: PostStandupdArguments): Promise<void> => {
+}: PostStandupArguments): Promise<void> => {
   //acknowledge the request
   ack();
-
-  const questions = [
-    { question: "How do you feel?", id: "question_one" },
-    { question: "What did you do yesterday?", id: "question_two" },
-    { question: "What will you do today?", id: "question_three" },
-    { question: "Anything blocking your progress?", id: "question_four" },
-  ];
 
   const obj: StandupQuestionModal = {
     trigger_id: body.trigger_id,
@@ -68,7 +65,8 @@ const approveButtonClicked = async ({
       blocks: [],
     },
   };
-  questions.forEach((question) =>
+
+  standupQuestions.forEach((question: StandupQuestion) =>
     obj.view.blocks.push({
       type: "input",
       element: {
@@ -93,4 +91,4 @@ const approveButtonClicked = async ({
   }
 };
 
-module.exports = approveButtonClicked;
+module.exports = postStandupButton;

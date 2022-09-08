@@ -31,7 +31,7 @@ const standup = async ({
               },
               style: "primary",
               value: "approve",
-              action_id: "button_approve",
+              action_id: "button_post_standup",
             },
             {
               type: "button",
