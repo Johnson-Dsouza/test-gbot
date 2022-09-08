@@ -26,7 +26,6 @@ const standupModal = async ({
    * using it to populate response as user
    * in the selected channel
    */
-
   const user = await client.users.profile
     .get({ token: client.token, user: body.user.id })
     .then((data: any) => data)
@@ -46,7 +45,7 @@ const standupModal = async ({
       // Markup for the standup response
       blocks: [
         {
-          type: 'section',
+          type: "section",
 
           text: {
             type: "mrkdwn",
@@ -58,20 +57,20 @@ const standupModal = async ({
       text: "Today's standup G-bot App",
       attachments: [
         {
-          mrkdwn_in: ['text'],
-          color: '#A66CFF',
+          mrkdwn_in: ["text"],
+          color: "#A66CFF",
 
           fields: [
             {
-              title: 'How do you feel today?',
+              title: "How do you feel today?",
               value: `${payload.state.values.question_one.question_one.value}`,
               short: false,
             },
           ],
         },
         {
-          mrkdwn_in: ['text'],
-          color: '#9C9EFE',
+          mrkdwn_in: ["text"],
+          color: "#9C9EFE",
 
           fields: [
             {
@@ -83,8 +82,8 @@ const standupModal = async ({
           ],
         },
         {
-          mrkdwn_in: ['text'],
-          color: '#AFB4FF',
+          mrkdwn_in: ["text"],
+          color: "#AFB4FF",
 
           fields: [
             {
@@ -96,8 +95,8 @@ const standupModal = async ({
           ],
         },
         {
-          mrkdwn_in: ['text'],
-          color: '#B1E1FF',
+          mrkdwn_in: ["text"],
+          color: "#B1E1FF",
 
           fields: [
             {
@@ -117,9 +116,9 @@ const standupModal = async ({
       // Include a button in the message (or whatever blocks you want!)
       blocks: [
         {
-          type: 'section',
+          type: "section",
           text: {
-            type: 'plain_text',
+            type: "plain_text",
             text: `${error}`,
             emoji: true,
           },
