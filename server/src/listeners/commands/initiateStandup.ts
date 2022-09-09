@@ -5,7 +5,7 @@ type StandupArguments = {
   payload: { channel_id: string };
 };
 
-const standup = async ({
+const initiateStandup = async ({
   client,
   context,
   ack,
@@ -60,4 +60,4 @@ const standup = async ({
   }
 };
 
-module.exports = standup;
+module.exports = initiateStandup;

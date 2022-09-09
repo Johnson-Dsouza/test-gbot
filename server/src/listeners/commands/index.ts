@@ -1,4 +1,4 @@
-const standupCommand = require("./standup");
+const standupCommand = require("./initiateStandup");
 
 type Command = {
   command: Function;

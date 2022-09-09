@@ -15,17 +15,14 @@ type StandupQuestionModal = {
     title: {
       type: string;
       text: string;
-      emoji: boolean;
     };
     submit: {
       type: string;
       text: string;
-      emoji: boolean;
     };
     close: {
       type: string;
       text: string;
-      emoji: boolean;
     };
     blocks: object[];
   };
@@ -50,17 +47,14 @@ const postStandupButton = async ({
       title: {
         type: "plain_text",
         text: "Whatsup",
-        emoji: true,
       },
       submit: {
         type: "plain_text",
         text: "Submit",
-        emoji: true,
       },
       close: {
         type: "plain_text",
         text: "Cancel",
-        emoji: true,
       },
       blocks: [],
     },
@@ -78,7 +72,6 @@ const postStandupButton = async ({
       label: {
         type: "plain_text",
         text: question.question,
-        emoji: true,
       },
     })
   );
