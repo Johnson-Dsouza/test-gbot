@@ -5,7 +5,7 @@ type StandupArguments = {
   payload: { channel_id: string };
 };
 
-const standup = async ({
+const initiateStandup = async ({
   client,
   context,
   ack,
@@ -26,12 +26,12 @@ const standup = async ({
               type: "button",
               text: {
                 type: "plain_text",
-                text: "Approve",
+                text: "Post Standup",
                 emoji: true,
               },
               style: "primary",
               value: "approve",
-              action_id: "button_approve",
+              action_id: "button_post_standup",
             },
             {
               type: "button",
@@ -60,4 +60,4 @@ const standup = async ({
   }
 };
 
-module.exports = standup;
+module.exports = initiateStandup;
