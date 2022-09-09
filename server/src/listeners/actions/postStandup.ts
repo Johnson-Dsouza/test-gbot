@@ -1,4 +1,4 @@
-const standupQuestions = require("../../utils/standupQuestions");
+const standupQuestions = require("../../constants/standupQuestions");
 
 type PostStandupArguments = {
   client: { views: { open: Function } };
@@ -41,7 +41,7 @@ const postStandupButton = async ({
   //acknowledge the request
   ack();
 
-  const obj: StandupQuestionModal = {
+  const standupModal: StandupQuestionModal = {
     trigger_id: body.trigger_id,
     token: body.botToken,
     view: {
@@ -67,17 +67,17 @@ const postStandupButton = async ({
   };
 
   standupQuestions.forEach((question: StandupQuestion) =>
-    obj.view.blocks.push({
+    standupModal.view.blocks.push({
       type: "input",
       element: {
         type: "plain_text_input",
         multiline: true,
-        action_id: `${question.id}`,
+        action_id: question.id,
       },
-      block_id: `${question.id}`,
+      block_id: question.id,
       label: {
         type: "plain_text",
-        text: `${question.question}`,
+        text: question.question,
         emoji: true,
       },
     })
@@ -85,7 +85,7 @@ const postStandupButton = async ({
 
   try {
     //Call the views.open method using the WebClient passed to listeners
-    await client.views.open(obj);
+    await client.views.open(standupModal);
   } catch (error) {
     console.error(error);
   }
