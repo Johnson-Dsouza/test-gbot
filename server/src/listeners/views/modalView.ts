@@ -1,4 +1,5 @@
 require("dotenv").config();
+const userInfo = require("../../utils/userDetails");
 
 type StandupModalArgs = {
   client: {
@@ -21,19 +22,7 @@ const standupModal = async ({
 }: StandupModalArgs) => {
   await ack();
 
-  /**
-   * Making a request to receive user details
-   * using it to populate response as user
-   * in the selected channel
-   */
-
-  const user = await client.users.profile
-    .get({ token: client.token, user: body.user.id })
-    .then((data: any) => data)
-    .then(
-      (data: { profile: { image_192: string; diplay_name: string } }) =>
-        data.profile
-    );
+  const user = await userInfo({ client, body });
 
   try {
     await client.chat.postMessage({
@@ -113,7 +102,7 @@ const standupModal = async ({
     await client.chat.postMessage({
       token: context.botToken,
       // Channel to send message to
-      channel: "C0403497QV8",
+      channel: process.env.GATHER_BOT_CHANNEL,
       // Include a button in the message (or whatever blocks you want!)
       blocks: [
         {
@@ -125,8 +114,6 @@ const standupModal = async ({
           },
         },
       ],
-
-      // Text in the notification
     });
     console.error(error);
   }
