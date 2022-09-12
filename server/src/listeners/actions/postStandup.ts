@@ -1,6 +1,6 @@
 const standupQuestions = require("../../constants/standupQuestions");
 
-type PostStandupArguments = {
+type PostStandupArgs = {
   client: { views: { open: Function } };
   body: { botToken: string; trigger_id: string };
   ack: Function;
@@ -34,7 +34,7 @@ const postStandupButton = async ({
   client,
   body,
   ack,
-}: PostStandupArguments): Promise<void> => {
+}: PostStandupArgs): Promise<void> => {
   //acknowledge the request
   ack();
 
@@ -43,10 +43,10 @@ const postStandupButton = async ({
     token: body.botToken,
     view: {
       type: "modal",
-      callback_id: "modal-with-inputs",
+      callback_id: "modal-with-standup-questions",
       title: {
         type: "plain_text",
-        text: "Whatsup",
+        text: "G-bot",
       },
       submit: {
         type: "plain_text",
