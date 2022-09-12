@@ -20,35 +20,35 @@ const initiateStandup = async ({
       // Include a button in the message
       blocks: [
         {
-          type: "actions",
+          type: 'actions',
           elements: [
             {
-              type: "button",
+              type: 'button',
               text: {
-                type: "plain_text",
-                text: "Post Standup",
+                type: 'plain_text',
+                text: 'Post Standup',
                 emoji: true,
               },
-              style: "primary",
-              value: "approve",
-              action_id: "button_post_standup",
+              style: 'primary',
+              value: 'approve',
+              action_id: 'button_post_standup',
             },
             {
-              type: "button",
+              type: 'button',
               text: {
-                type: "plain_text",
-                text: "Not Working Today",
+                type: 'plain_text',
+                text: 'Not Working Today',
                 emoji: true,
               },
-              style: "danger",
-              value: "not_working_today",
-              action_id: "button_not_working_today",
+              style: 'danger',
+              value: 'not_working_today',
+              action_id: 'button_not_working_today',
             },
           ],
         },
       ],
       // Text in the notification
-      text: "Message from G-Bot",
+      text: 'Message from G-Bot',
     });
   } catch (error) {
     await client.chat.postMessage({

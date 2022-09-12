@@ -1,9 +1,9 @@
-require("dotenv").config();
+require('dotenv').config();
 
-const { handleListeners } = require("./listeners");
-const { App, ExpressReceiver } = require("@slack/bolt");
+const { handleListeners } = require('./listeners');
+const { App, ExpressReceiver } = require('@slack/bolt');
 
-const express = require("express");
+const express = require('express');
 const expressApp = express();
 
 const receiver = new ExpressReceiver({
@@ -19,5 +19,5 @@ const slackApp = new App({
 handleListeners(slackApp);
 
 expressApp.listen(process.env.PORT || 8000, () => {
-  console.log("⚡️ Bolt app is running! ⚡️");
+  console.log('⚡️ Bolt app is running! ⚡️');
 });
