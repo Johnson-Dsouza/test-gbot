@@ -1,4 +1,4 @@
-type StandupArguments = {
+type StandupArgs = {
   client: { chat: { postMessage: Function } };
   context: { botToken: string };
   ack: Function;
@@ -10,7 +10,7 @@ const initiateStandup = async ({
   context,
   ack,
   payload,
-}: StandupArguments): Promise<void> => {
+}: StandupArgs): Promise<void> => {
   await ack();
   try {
     await client.chat.postMessage({

@@ -1,4 +1,6 @@
-type StandupModalArguments = {
+require("dotenv").config();
+
+type StandupModalArgs = {
   client: {
     chat: { postMessage: Function };
     users: { profile: { get: Function } };
@@ -16,7 +18,7 @@ const standupModal = async ({
   payload,
   context,
   body,
-}: StandupModalArguments) => {
+}: StandupModalArgs) => {
   await ack();
 
   /**
@@ -38,12 +40,10 @@ const standupModal = async ({
       //posting message as a user
       icon_url: user.image_192,
       username: user.display_name,
-
       token: context.botToken,
-
       // Channel to send message to
-      channel: "C0403497QV8",
-
+      channel: process.env.GATHER_BOT_CHANNEL,
+      // Markup for the standup response
       blocks: [
         {
           type: "section",
@@ -54,7 +54,6 @@ const standupModal = async ({
           },
         },
       ],
-
       // Text in the notification
       text: "Today's standup G-bot App",
       attachments: [
