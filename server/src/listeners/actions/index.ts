@@ -1,3 +1,9 @@
+/**
+ * This folder contains the logic and response for handling
+ * actions taken by user while interacting with the bot
+ * eg:- Clicking a button provided by an interactive message
+ */
+
 const postStandup = require("./postStandup");
 const notWorkingResponse = require("./notWorking");
 

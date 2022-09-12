@@ -1,3 +1,8 @@
+/**
+ * This folder contains logic to listen and handle
+ * the opening and closing of a modal
+ */
+
 const modal = require("./modalView");
 
 type View = {
