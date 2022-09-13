@@ -13,9 +13,9 @@ const postStandupMessage = async ({
 }: PostStandupMessageArgs) => {
   try {
     await client.chat.postMessage({
-      token: token,
+      token,
       // Channel to send message to
-      channel: channel,
+      channel,
       // Markup for interactive message
       blocks: standupMessageMarkup,
       // Text in the notification
