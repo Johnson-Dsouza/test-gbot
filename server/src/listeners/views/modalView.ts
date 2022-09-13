@@ -53,7 +53,7 @@ const standupModal = async ({
           fields: [
             {
               title: "How do you feel today?",
-              value: `${payload.state.values.question_one.question_one.value}`,
+              value: payload.state.values.question_one.question_one.value,
               short: false,
             },
           ],
@@ -66,7 +66,7 @@ const standupModal = async ({
             {
               title:
                 "What is/are the things that you've done which mattered to the sprint goal since yesterday?",
-              value: `${payload.state.values.question_two.question_two.value}`,
+              value: payload.state.values.question_two.question_two.value,
               short: false,
             },
           ],
@@ -79,7 +79,7 @@ const standupModal = async ({
             {
               title:
                 "What is the next important thing that you will do to achieve the sprint goal?",
-              value: `${payload.state.values.question_three.question_three.value}`,
+              value: payload.state.values.question_three.question_three.value,
               short: false,
             },
           ],
@@ -91,7 +91,7 @@ const standupModal = async ({
           fields: [
             {
               title: "Any Blockers that need to be addressed by the team?",
-              value: `${payload.state.values.question_four.question_four.value}`,
+              value: payload.state.values.question_four.question_four.value,
               short: false,
             },
           ],
@@ -109,7 +109,7 @@ const standupModal = async ({
           type: "section",
           text: {
             type: "plain_text",
-            text: `${error}`,
+            text: error,
             emoji: true,
           },
         },

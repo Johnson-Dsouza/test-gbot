@@ -1,3 +1,5 @@
+const initiateStandupOnCommand = require("../../services/postMessage");
+
 type StandupArgs = {
   client: { chat: { postMessage: Function } };
   context: { botToken: string };
@@ -12,52 +14,11 @@ const initiateStandup = async ({
   payload,
 }: StandupArgs): Promise<void> => {
   await ack();
-  try {
-    await client.chat.postMessage({
-      token: context.botToken,
-      // Channel to send message to
-      channel: payload.channel_id,
-      // Include a button in the message
-      blocks: [
-        {
-          type: "actions",
-          elements: [
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "Post Standup",
-                emoji: true,
-              },
-              style: "primary",
-              value: "approve",
-              action_id: "button_post_standup",
-            },
-            {
-              type: "button",
-              text: {
-                type: "plain_text",
-                text: "Not Working Today",
-                emoji: true,
-              },
-              style: "danger",
-              value: "not_working_today",
-              action_id: "button_not_working_today",
-            },
-          ],
-        },
-      ],
-      // Text in the notification
-      text: "Message from G-Bot",
-    });
-  } catch (error) {
-    await client.chat.postMessage({
-      token: context.botToken,
-      channel: payload.channel_id,
-      text: `${error}`,
-    });
-    console.error(error);
-  }
+
+  const token = context.botToken;
+  const channel = payload.channel_id;
+
+  initiateStandupOnCommand({ token, channel, client });
 };
 
 module.exports = initiateStandup;

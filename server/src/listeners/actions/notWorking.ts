@@ -31,7 +31,7 @@ const notWorking = async ({
       token: context.botToken,
       // Channel to send message to
       channel: process.env.GATHER_BOT_CHANNEL,
-      text: `*${user.display_name}* has marked as not working today`,
+      text: `*${user.display_name}* reported as not working today`,
     });
   } catch (error) {
     await client.chat.postMessage({
@@ -44,7 +44,7 @@ const notWorking = async ({
           type: "section",
           text: {
             type: "plain_text",
-            text: `${error}`,
+            text: error,
             emoji: true,
           },
         },
