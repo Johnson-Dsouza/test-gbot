@@ -1,4 +1,4 @@
-const scheduledStandup = require("../initiate standup/initiateStandup");
+const scheduledStandup = require("../initiateStandup/initiateStandup");
 const cron = require("node-cron");
 
 /**
@@ -8,7 +8,12 @@ const cron = require("node-cron");
  */
 
 const standupScheduler = (app: any) => {
-  cron.schedule("7 9 * * 1-5", function () {
+  /**
+   * Calls the function provided in second argument
+   * at 9:30 AM on weekdays
+   */
+
+  cron.schedule("28 10 * * 1-5", () => {
     scheduledStandup(app);
   });
 };

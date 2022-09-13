@@ -16,7 +16,7 @@ const scheduleStandup = async ({
       await client.chat.postMessage({
         token: client.token,
         // Channel to send message to
-        channel: `${user}`, //,
+        channel: user,
         // Text in the notification
         text: "Message from G-Bot",
         blocks: [
@@ -60,8 +60,8 @@ const scheduleStandup = async ({
     } catch (error) {
       await client.chat.postMessage({
         token: context.botToken,
-        channel: `${user}`,
-        text: `${error}`,
+        channel: user,
+        text: error,
       });
       console.error(error);
     }
