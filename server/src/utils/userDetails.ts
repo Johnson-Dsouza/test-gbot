@@ -14,7 +14,7 @@ const userDetails = async ({ client, body }: UserDetailArgs) => {
     .get({ token: client.token, user: body.user.id })
     .then(
       async (data: { profile: { image_192: string; diplay_name: string } }) =>
-        await data
+        await data.profile
     );
 
   return data;

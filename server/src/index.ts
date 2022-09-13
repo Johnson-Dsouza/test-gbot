@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const { handleListeners } = require("./listeners");
 const { App, ExpressReceiver } = require("@slack/bolt");
-const standupScheduled = require("./scheduler/standupScheduler");
+const standupScheduled = require("./schedulers/standupScheduler");
 
 const express = require("express");
 const expressApp = express();
