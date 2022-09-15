@@ -1,6 +1,4 @@
 import * as React from "react"
-
-
 const IndexPage = () => {
   return (
     <main>
@@ -10,5 +8,3 @@ const IndexPage = () => {
 }
 
 export default IndexPage
-
-

@@ -1,5 +1,4 @@
 import * as React from "react"
-
 const NotFoundPage = () => {
   return (
     <main>
@@ -9,5 +8,3 @@ const NotFoundPage = () => {
 }
 
 export default NotFoundPage
-
-
