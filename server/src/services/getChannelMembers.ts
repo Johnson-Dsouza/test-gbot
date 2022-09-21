@@ -1,12 +1,25 @@
+<<<<<<< HEAD
 export {};
 const express = require("express");
 const router = express.Router();
-let channelMembers: { member_name: string }[] = [];
+const channelMembers = require("../slackApiCalls/getChannelMembers");
 
 type CallBackArgs = {
   req: {};
-  res: { send: Function };
+  res: { status: Function };
 };
+
+<<<<<<<< HEAD:server/src/services/getChannelMembers.ts
+module.exports = { getChannelMembers, channelMembers };
+========
+router.get("/", async ({ req, res }: CallBackArgs) => {
+  return res.status(200).json({ data: channelMembers });
+});
+
+module.exports = router;
+>>>>>>>> 736fead (refactored the code):server/src/routes/api/channelMembers.ts
+=======
+let channelMembers: { member_name: string }[] = [];
 
 type GetChannelMemberArgs = {
   client: {
@@ -33,3 +46,4 @@ const getChannelMembers = async (app: GetChannelMemberArgs) => {
 };
 
 module.exports = { getChannelMembers, channelMembers };
+>>>>>>> 736fead (refactored the code)
