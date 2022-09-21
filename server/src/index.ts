@@ -8,9 +8,6 @@ const expressApp = require("./server");
 
 const cors = require("cors");
 
-// const express = require("express");
-// const expressApp = express();
-
 expressApp.use(cors());
 
 const receiver = new ExpressReceiver({

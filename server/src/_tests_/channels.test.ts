@@ -1,11 +1,8 @@
 export {};
 
 const request = require("supertest");
-const express = require("express");
 
 const app = require("../server");
-
-app.use(express.json());
 
 const channelsRouter = require("../routes/api/channels");
 
