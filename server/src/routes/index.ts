@@ -2,7 +2,7 @@ export {};
 const express = require("express");
 const router = express.Router();
 
-const { getChannels } = require("./api/channels");
+const { getChannels } = require("./slackApiCalls/getChannels");
 
 const api = require("./api");
 
