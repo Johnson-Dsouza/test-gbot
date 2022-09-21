@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["es6"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "strict": true,
@@ -17,6 +17,6 @@
     "allowJs": true
   },
   "compileOnSave": true,
-  "include": ["src/**/*", "index.ts", "listeners"]
+  "include": ["src/**/*"]
 }
 

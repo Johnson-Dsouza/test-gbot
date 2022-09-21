@@ -5,11 +5,11 @@ const channels = require("../slackApiCalls/getChannels");
 
 type CallBackArgs = {
   req: {};
-  res: { send: Function };
+  res: { status: Function };
 };
 
-router.get("/", async ({ req, res }: CallBackArgs) => {
-  await res.send({ status: 200, data: channels });
+router.get("/", ({ req, res }: CallBackArgs) => {
+  return res.status(200).json({ data: channels });
 });
 
 module.exports = router;

@@ -3,7 +3,8 @@ require("dotenv").config();
 const { handleListeners } = require("./listeners");
 const { App, ExpressReceiver } = require("@slack/bolt");
 const standupScheduled = require("./schedulers/standupScheduler");
-const { handleApiCalls, router } = require("./routes");
+const { router, handleApiCalls } = require("./routes");
+
 const cors = require("cors");
 
 const express = require("express");
@@ -32,3 +33,5 @@ expressApp.use(router);
 expressApp.listen(process.env.PORT || 8000, () => {
   console.log("⚡️ Bolt app is running! ⚡️");
 });
+
+module.exports = expressApp;
