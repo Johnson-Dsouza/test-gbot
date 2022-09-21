@@ -4,11 +4,12 @@ const { handleListeners } = require("./listeners");
 const { App, ExpressReceiver } = require("@slack/bolt");
 const standupScheduled = require("./schedulers/standupScheduler");
 const { router, handleApiCalls } = require("./routes");
+const expressApp = require("./server");
 
 const cors = require("cors");
 
-const express = require("express");
-const expressApp = express();
+// const express = require("express");
+// const expressApp = express();
 
 expressApp.use(cors());
 

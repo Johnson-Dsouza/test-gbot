@@ -1,18 +1,27 @@
 export {};
-// const supertest = require("supertest");
-// const app = require("../server");
+
 const request = require("supertest");
-jest.mock("../routes/api/channels.ts");
+const express = require("express");
 
-describe("channel", () => {
+const app = require("../server");
+
+app.use(express.json());
+
+const channelsRouter = require("../routes/api/channels");
+
+app.use("/api/channels", channelsRouter);
+
+jest.mock("../routes/slackApiCalls/getChannels.ts", () => [
+  { name: "random", id: 1 },
+  { name: "g-bot", id: 2 },
+  { name: "testing", id: 3 },
+]);
+
+describe("GET /api/channels", () => {
   describe("get channels", () => {
-    it("should return status code as 200", async () => {
-      const response = await request("http://localhost:8000").get(
-        "/api/channels"
-      );
-
-      console.log(response.body);
-      //expect(response.body.data).toBe("hello");
+    it("should return the name of channel as random", async () => {
+      const response = await request(app).get("/api/channels");
+      expect(response.body.data[0].name).toBe("random");
     });
   });
 });
