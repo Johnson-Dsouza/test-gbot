@@ -1,3 +1,4 @@
+export {};
 let channels: { name: string; id: string }[] = [];
 
 const getChannels = async (app: any) => {
