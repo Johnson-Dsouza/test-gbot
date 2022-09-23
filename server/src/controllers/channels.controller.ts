@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-const { channels } = require("../services/getChannels");
+const { channels } = require("../services/channels.service");
 
 const fetchChannelHandler = async (req: Request, res: Response) => {
   try {

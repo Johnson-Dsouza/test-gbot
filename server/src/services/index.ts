@@ -1,6 +1,6 @@
 export {};
 
-const { getChannels } = require("./getChannels");
+const { getChannels } = require("./channels.service");
 
 const handleApiCalls = async (app: any) => {
   await getChannels(app);

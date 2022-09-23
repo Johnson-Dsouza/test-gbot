@@ -1,5 +1,5 @@
 export {};
-import { Express, Request, Response } from "express";
+import { Express } from "express";
 
 const fetchChannelHandler = require("./controllers/channels.controller");
 
