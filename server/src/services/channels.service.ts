@@ -1,12 +1,23 @@
-export {};
-let channels: { name: string; id: string }[] = [];
+import {
+  Channel,
+  ConversationsListResponse,
+} from "@slack/web-api/dist/response/ConversationsListResponse";
+import { slackApp } from "..";
 
-async function getChannels(app: any) {
-  const data = await app.client.conversations.list();
+type ChannelDetails = {
+  name?: string;
+  id?: string;
+};
 
-  data.channels.forEach((channel: { name: string; id: string }) =>
-    channels.push({ name: channel.name, id: channel.id })
-  );
-}
+export const getChannels = async () => {
+  let channels: ChannelDetails[] = [];
+  const data: ConversationsListResponse =
+    await slackApp.client.conversations.list();
+  if (data.channels) {
+    data.channels.forEach((channel: Channel) =>
+      channels.push({ name: channel.name, id: channel.id })
+    );
+  }
 
-export { getChannels, channels };
+  return channels;
+};

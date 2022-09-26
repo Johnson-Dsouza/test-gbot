@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-const { channels } = require("../services/channels.service");
+import { getChannels } from "../services/channels.service";
 
-const fetchChannelHandler = async (req: Request, res: Response) => {
+export const fetchChannelHandler = async (req: Request, res: Response) => {
   try {
-    res.status(200).send({ data: channels });
+    const channels = await getChannels();
+    res.status(200).json({ data: channels });
   } catch (error) {
     console.log(error);
   }
 };
-
-module.exports = fetchChannelHandler;

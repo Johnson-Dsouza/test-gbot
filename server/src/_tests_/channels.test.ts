@@ -1,24 +1,19 @@
-export {};
+import request from "supertest";
+import app from "../utils/expressApp";
+import { getChannels } from "../services/channels.service";
 
-const request = require("supertest");
+jest.mock("../services/channels.service");
 
-const app = require("../server");
+const mockGetChannels = getChannels as jest.MockedFunction<typeof getChannels>;
 
-const fetchChannelHandler = require("../controllers/channels.controller.ts");
-
-jest.mock("../services/getChannels", () => [
-  { name: "random", id: 1 },
-  { name: "g-bot", id: 2 },
-  { name: "testing", id: 3 },
-]);
+mockGetChannels.mockResolvedValueOnce([{ name: "random", id: "1" }]);
 
 app.use("/channels", fetchChannelHandler);
-
-describe("GET /channels", () => {
-  describe("get channels", () => {
+describe("GET", () => {
+  describe("/channels", () => {
     it("should return the name of channel as random", async () => {
       const response = await request(app).get("/channels");
-
+      console.log(response);
       expect(response.status).toBe(200);
     });
   });

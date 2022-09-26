@@ -1,10 +1,9 @@
-export {};
-import { Express } from "express";
+import { expressApp } from ".";
 
-const fetchChannelHandler = require("./controllers/channels.controller");
+const { fetchChannelHandler } = require("./controllers/channels.controller");
 
-const routes = (app: Express) => {
-  app.get("/channels", fetchChannelHandler);
+const routes = () => {
+  expressApp.get("/channels", fetchChannelHandler);
 };
 
-module.exports = routes;
+export default routes;
