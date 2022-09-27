@@ -1,37 +1,15 @@
 import {
-  List,
-  Datagrid,
-  TextField,
-  ReferenceField,
-  EditButton,
-  Edit,
   Create,
   SimpleForm,
-  ReferenceInput,
   TextInput,
   TimeInput,
   CheckboxGroupInput,
-  ShowButton,
   SelectInput,
 } from "react-admin";
 
-export const PostList = (props: any) => (
-  <List {...props}>
-    <Datagrid>
-      <TextField source="id" />
-      <ReferenceField source="userId" reference="users" />
-
-      <TextField source="title" />
-
-      <EditButton />
-      <ShowButton />
-    </Datagrid>
-  </List>
-);
-
-export const PostCreate = (props: any) => (
-  <Create {...props}>
-    <SimpleForm {...props}>
+const StandupCreate = () => (
+  <Create children>
+    <SimpleForm children>
       <TextInput source="Title" />
       <TextInput source="question 1" fullWidth />
       <TextInput source="question 2" fullWidth />
@@ -60,3 +38,5 @@ export const PostCreate = (props: any) => (
     </SimpleForm>
   </Create>
 );
+
+export default StandupCreate;
