@@ -5,11 +5,12 @@ import {
   TimeInput,
   CheckboxGroupInput,
   SelectInput,
+  EditProps,
 } from "react-admin";
 
-const StandupEdit = (props: any) => (
+const StandupEdit = (props: EditProps) => (
   <Edit {...props}>
-    <SimpleForm {...props}>
+    <SimpleForm>
       <TextInput source="question 1" fullWidth />
       <TextInput source="question 2" fullWidth />
       <TextInput source="question 3" fullWidth />
