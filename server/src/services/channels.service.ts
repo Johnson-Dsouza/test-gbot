@@ -18,6 +18,5 @@ export const getChannels = async () => {
       channels.push({ name: channel.name, id: channel.id })
     );
   }
-
   return channels;
 };
