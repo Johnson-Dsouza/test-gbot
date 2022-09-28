@@ -11,7 +11,7 @@ import {
 } from "react-admin";
 
 const StandupList = (props: ListProps) => (
-  <List {...props}>
+  <List exporter={false} {...props}>
     <Datagrid>
       <TextField source="id" />
       <TextField source="title" />
