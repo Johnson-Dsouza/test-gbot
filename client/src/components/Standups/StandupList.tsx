@@ -2,7 +2,6 @@ import {
   List,
   Datagrid,
   TextField,
-  ReferenceField,
   EditButton,
   ShowButton,
   ListProps,
@@ -12,8 +11,9 @@ const StandupList = (props: ListProps) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-      <ReferenceField source="userId" reference="users" />
       <TextField source="title" />
+      <TextField source="members" />
+      <TextField source="channel" />
       <EditButton />
       <ShowButton />
     </Datagrid>
