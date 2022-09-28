@@ -1,11 +1,7 @@
 require("dotenv").config();
 
 import { App, ExpressReceiver } from "@slack/bolt";
-import express from "express";
-import cors from "cors";
-
-const expressApp = express();
-expressApp.use(cors());
+import expressApp from "./server";
 
 export const createApp = () => {
   const receiver = new ExpressReceiver({
@@ -18,5 +14,5 @@ export const createApp = () => {
     receiver,
   });
 
-  return { slackApp, expressApp };
+  return { slackApp };
 };

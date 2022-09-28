@@ -1,8 +1,9 @@
-import { createApp } from "../createApp";
+import { createApp } from "./createApp";
 import routes from "./routes";
 const { handleListeners } = require("./listeners");
 const standupScheduled = require("./schedulers/standupScheduler");
-const { slackApp, expressApp } = createApp();
+const { slackApp } = createApp();
+import expressApp from "./server";
 
 routes();
 
