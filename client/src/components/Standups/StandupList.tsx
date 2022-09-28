@@ -2,18 +2,26 @@ import {
   List,
   Datagrid,
   TextField,
-  ReferenceField,
   EditButton,
   ShowButton,
   ListProps,
+  SingleFieldList,
+  ChipField,
+  ArrayField,
 } from "react-admin";
 
 const StandupList = (props: ListProps) => (
-  <List {...props}>
+  <List exporter={false} {...props}>
     <Datagrid>
       <TextField source="id" />
-      <ReferenceField source="userId" reference="users" />
       <TextField source="title" />
+      <TextField source="channel" />
+
+      <ArrayField source="members">
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
+      </ArrayField>
       <EditButton />
       <ShowButton />
     </Datagrid>
