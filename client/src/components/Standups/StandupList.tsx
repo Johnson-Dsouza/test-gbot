@@ -5,6 +5,9 @@ import {
   EditButton,
   ShowButton,
   ListProps,
+  SingleFieldList,
+  ChipField,
+  ArrayField,
 } from "react-admin";
 
 const StandupList = (props: ListProps) => (
@@ -12,8 +15,13 @@ const StandupList = (props: ListProps) => (
     <Datagrid>
       <TextField source="id" />
       <TextField source="title" />
-      <TextField source="members" />
       <TextField source="channel" />
+
+      <ArrayField source="members">
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
+      </ArrayField>
       <EditButton />
       <ShowButton />
     </Datagrid>

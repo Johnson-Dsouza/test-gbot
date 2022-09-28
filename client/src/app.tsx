@@ -1,14 +1,16 @@
 import { Admin, Resource } from "react-admin";
-import jsonServerProvider from "ra-data-json-server";
 import StandupList from "./components/Standups/StandupList";
 import StandupCreate from "./components/Standups/StandupCreate";
 import StandupEdit from "./components/Standups/StandupEdit";
-const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
+import fakeDataProvider from "ra-data-fakerest";
+import data from "./db";
+
+const dataProvider = fakeDataProvider(data);
 
 const App = () => (
   <Admin title="g-bot" dataProvider={dataProvider}>
     <Resource
-      name="posts"
+      name="standups"
       list={StandupList}
       create={StandupCreate}
       edit={StandupEdit}
