@@ -1,38 +1,38 @@
 const mockChannelMembersData = [
   {
-    member_name: "Vinodhini R",
+    member_name: "Leanne Graham",
     member_id: 0,
   },
   {
-    member_name: "Jawakar",
+    member_name: "Ervin Howell",
     member_id: 1,
   },
   {
-    member_name: "Ananth Kamath",
+    member_name: "Clementine Bauch",
     member_id: 2,
   },
   {
-    member_name: "Sujay Prabhu",
+    member_name: "Patricia Lebsack",
     member_id: 3,
   },
   {
-    member_name: "Nisanth",
+    member_name: "Lucio Hettinger",
     member_id: 4,
   },
   {
-    member_name: "Vivek Matthew",
+    member_name: "Kurtis Weissnat",
     member_id: 5,
   },
   {
-    member_name: "Johnson Dsouza",
+    member_name: "Nicholas Runolfsdottir",
     member_id: 6,
   },
   {
-    member_name: "Ayush Srivastava",
+    member_name: "Glenna Reichert",
     member_id: 7,
   },
   {
-    member_name: "Syed Sibtain",
+    member_name: "Dennis Schulist",
     member_id: 8,
   },
 ];

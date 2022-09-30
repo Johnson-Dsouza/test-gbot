@@ -13,7 +13,7 @@ describe("Channels", () => {
       mockGetChannels.mockResolvedValue(mockChannelData);
       const response = await request(expressApp).get("/channels");
       expect(response.status).toBe(200);
-      //expect(response.body.data[0].name).toBe("random");
+      expect(response.body.data[0].name).toBe("random");
     });
   });
 });

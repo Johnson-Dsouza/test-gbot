@@ -8,7 +8,7 @@ export const fetchChannelMemberHandler = async (
   try {
     const channel_id = req.params.channel_id;
     const channelMembers = await getChannelMembers(channel_id);
-    res.status(200).send({ data: channelMembers });
+    res.status(200).json({ data: channelMembers });
   } catch (error) {
     console.log(error);
   }

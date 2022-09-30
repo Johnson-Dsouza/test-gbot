@@ -11,12 +11,14 @@ const mockGetChannelMembers = getChannelMembers as jest.MockedFunction<
 
 describe("Channel Members", () => {
   describe("GET /channelsMembers/:channel_id", () => {
-    test("should return the name of channel as random", async () => {
+    test("should return the name of the channel member as Dennis Schulist", async () => {
       mockGetChannelMembers.mockResolvedValue(mockChannelMembersData);
-      console.log(expressApp);
-      const response = await request(expressApp).get("/channels/:channel_id");
+      const channel_id = "1234";
+      const response = await request(expressApp).get(
+        `/channelMembers/${channel_id}`
+      );
       expect(response.status).toBe(200);
-      //expect(response.body.data[0].name).toBe("random");
+      expect(response.body.data[8].member_name).toBe("Dennis Schulist");
     });
   });
 });
