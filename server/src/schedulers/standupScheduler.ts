@@ -8,7 +8,7 @@ const standupScheduler = (app: any) => {
   // Calls the function provided in second argument
   // at 9:30 AM on weekdays
 
-  cron.schedule("30 9 * * 1-5", () => {
+  cron.schedule("9 10 * * 1-5", () => {
     scheduledStandup(app);
   });
 };

@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
-const { channelMembers } = require("../services/getChannelMembers");
+import { getChannelMembers } from "../services/channelMembers.service";
 
-const fetchChannelMemberHandler = async (req: Request, res: Response) => {
+export const fetchChannelMemberHandler = async (
+  req: Request,
+  res: Response
+) => {
   try {
+    const channel_id = req.params.channel_id;
+    const channelMembers = await getChannelMembers(channel_id);
     res.status(200).send({ data: channelMembers });
   } catch (error) {
     console.log(error);
   }
 };
-
-module.exports = fetchChannelMemberHandler;
