@@ -15,7 +15,7 @@ describe("Channel Members", () => {
       mockGetChannelMembers.mockResolvedValue(mockChannelMembersData);
       const channel_id = "1234";
       const response = await request(expressApp).get(
-        `/channelMembers/${channel_id}`
+        `/channels/${channel_id}/members`
       );
       expect(response.status).toBe(200);
       expect(response.body.data[8].member_name).toBe("Dennis Schulist");

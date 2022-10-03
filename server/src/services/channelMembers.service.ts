@@ -9,13 +9,13 @@ type ChannelMemberDetails = {
   member_id: number;
 };
 
-export const getChannelMembers = async (channel: string) => {
+export const getChannelMembers = async (channel_id: string) => {
   let channelMembers: ChannelMemberDetails[] = [];
   // this method gets the userId of channel members from the workspace
   const data: ConversationsMembersResponse =
     await slackApp.client.conversations.members({
       token: slackApp.client.token,
-      channel,
+      channel: channel_id,
     });
 
   if (data.members) {
