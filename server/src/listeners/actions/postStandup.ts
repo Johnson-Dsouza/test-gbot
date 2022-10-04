@@ -1,8 +1,21 @@
 const standupQuestions = require("../../constants/standupQuestions");
 
+export let updatingMessageOnPostingStandup: {
+  userChannelId: string;
+  timeStampValue: string;
+} = {
+  userChannelId: "",
+  timeStampValue: "",
+};
+
 type PostStandupArgs = {
   client: { views: { open: Function } };
-  body: { botToken: string; trigger_id: string };
+  body: {
+    botToken: string;
+    trigger_id: string;
+    channel: { id: string };
+    container: { message_ts: string };
+  };
   ack: Function;
 };
 
@@ -30,13 +43,19 @@ type StandupQuestionModal = {
 
 type StandupQuestion = { question: string; id: string };
 
-const postStandupButton = async ({
+export const postStandupButton = async ({
   client,
   body,
   ack,
 }: PostStandupArgs): Promise<void> => {
   //acknowledge the request
   ack();
+
+  //storing user channel id
+  updatingMessageOnPostingStandup.userChannelId = body.channel.id;
+
+  //storing time stamp
+  updatingMessageOnPostingStandup.timeStampValue = body.container.message_ts;
 
   const standupModal: StandupQuestionModal = {
     trigger_id: body.trigger_id,
@@ -83,5 +102,3 @@ const postStandupButton = async ({
     console.error(error);
   }
 };
-
-module.exports = postStandupButton;
