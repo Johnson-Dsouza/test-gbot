@@ -8,7 +8,7 @@ handleListeners(slackApp);
 
 standupScheduled(slackApp);
 
-expressApp?.listen(process.env.PORT || 8000, () => {
+expressApp.listen(process.env.PORT || 8000, () => {
   console.log("⚡️ Bolt app is running! ⚡️");
 });
 

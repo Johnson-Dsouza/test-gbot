@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getChannels } from "../services/channels.service";
-import { getChannelMembers } from "../services/channelMembers.service";
+import { getChannelMembers } from "../services/channels.service";
 
 export const fetchChannelHandler = async (req: Request, res: Response) => {
   try {
