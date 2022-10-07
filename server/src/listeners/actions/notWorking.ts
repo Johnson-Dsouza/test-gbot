@@ -1,19 +1,31 @@
 require("dotenv").config();
 const userData = require("../../utils/userDetails");
 
+let updatingMessageWhenNotWorking: {
+  userChannelId: string;
+  timeStampValue: string;
+} = {
+  userChannelId: "",
+  timeStampValue: "",
+};
+
 type NotWorkingArgs = {
   client: {
-    chat: { postMessage: Function };
+    chat: { postMessage: ({}) => void; update: ({}) => void };
     users: { profile: { get: Function } };
     token: string;
   };
   context: { botToken: string };
   ack: Function;
 
-  body: { user: { id: string } };
+  body: {
+    user: { id: string };
+    channel: { id: string };
+    container: { message_ts: string };
+  };
 };
 
-const notWorking = async ({
+export const notWorking = async ({
   client,
   context,
   ack,
@@ -22,6 +34,12 @@ const notWorking = async ({
   await ack();
 
   const user = await userData({ client, body });
+
+  //storing user channel id
+  updatingMessageWhenNotWorking.userChannelId = body.channel.id;
+
+  //storing time stamp
+  updatingMessageWhenNotWorking.timeStampValue = body.container.message_ts;
 
   try {
     await client.chat.postMessage({
@@ -52,6 +70,24 @@ const notWorking = async ({
     });
     console.error(error);
   }
+  // updating the standup message after clicking not working
+  try {
+    await client.chat.update({
+      token: context.botToken,
+      channel: updatingMessageWhenNotWorking.userChannelId,
+      ts: updatingMessageWhenNotWorking.timeStampValue,
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "You are marked as not working today",
+          },
+        },
+      ],
+      text: "Response was submitted by the user",
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
-
-module.exports = notWorking;

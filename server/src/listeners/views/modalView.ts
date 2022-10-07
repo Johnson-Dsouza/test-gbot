@@ -1,9 +1,10 @@
 require("dotenv").config();
 const userInfo = require("../../utils/userDetails");
+import { updatingMessageOnPostingStandup } from "../actions/postStandup";
 
 type StandupModalArgs = {
   client: {
-    chat: { postMessage: Function };
+    chat: { postMessage: ({}) => void; update: ({}) => void };
     users: { profile: { get: Function } };
     token: string;
   };
@@ -116,6 +117,34 @@ const standupModal = async ({
       ],
     });
     console.error(error);
+  }
+  // updating the standup message after submitting response
+  try {
+    await client.chat.update({
+      token: context.botToken,
+      channel: updatingMessageOnPostingStandup.userChannelId,
+      ts: updatingMessageOnPostingStandup.timeStampValue,
+      blocks: [
+        {
+          type: "section",
+          text: {
+            type: "mrkdwn",
+            text: "Response was submitted:",
+          },
+        },
+      ],
+
+      attachments: [
+        {
+          mrkdwn_in: ["text"],
+          color: "#3a86ff",
+          text: "*Thankyou for submitting your response*",
+        },
+      ],
+      text: "Response was submitted by the user",
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
 

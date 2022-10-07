@@ -4,14 +4,14 @@
  * eg:- Clicking a button provided by an interactive message
  */
 
-const postStandup = require("./postStandup");
-const notWorkingResponse = require("./notWorking");
+import { postStandupButton } from "./postStandup";
+import { notWorking } from "./notWorking";
 
 type Action = {
   action: Function;
 };
 
 module.exports.handle = (app: Action) => {
-  app.action("button_post_standup", postStandup);
-  app.action("button_not_working_today", notWorkingResponse);
+  app.action("button_post_standup", postStandupButton);
+  app.action("button_not_working_today", notWorking);
 };
